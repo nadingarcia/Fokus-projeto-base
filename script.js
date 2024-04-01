@@ -84,6 +84,9 @@ const contagem = () => {
        intervaloId = null;
        textoSpan.textContent = 'Começar';
        new Audio('./sons/beep.mp3').play();
+       if (musica.play){
+        musica.pause();
+    }
     }
 
     tempoDecorrido -= 1;
