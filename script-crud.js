@@ -4,7 +4,7 @@ const textarea = document.querySelector(".app__form-textarea");
 const ulTarefas = document.querySelector('.app__section-task-list')
 
 
-const tarefas = {lista: JSON.parse(localStorage.getItem('tarefas')) || []};
+const tarefas = JSON.parse(localStorage.getItem('tarefas')) || [];
 
 
 function criarElementoTarefa(tarefa) {
@@ -52,7 +52,7 @@ formularioTarefa.addEventListener("submit", (evento) => {
     localStorage.setItem('tarefas', JSON.stringify(tarefas));
 })
 
-tarefas.lista.forEach(tarefa => {
+tarefas.forEach(tarefa => {
     const elementoTarefa = criarElementoTarefa(tarefa)
     ulTarefas.append(elementoTarefa)
 });
