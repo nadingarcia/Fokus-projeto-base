@@ -50,9 +50,14 @@ function criarElementoTarefa(tarefa) {
     li.append(botao);
 
     li.addEventListener("click", ()=> {
-        tarefaAtual.textContent = tarefa.descricao;
-        li.classList.add("app__section-task-list-item-active"); 
-    })
+    // Remover a classe "active" de todos os elementos "li"
+    document.querySelectorAll(".app__section-task-list-item").forEach(item => {
+        item.classList.remove("app__section-task-list-item-active");
+    });
+
+    tarefaAtual.textContent = tarefa.descricao;
+    li.classList.add("app__section-task-list-item-active"); 
+});
 
     return li;
 
