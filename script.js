@@ -14,7 +14,7 @@ const iconPlay = document.querySelector('.app__card-primary-butto-icon');
 const textoSpan = document.querySelector('#start-pause span');
 const tempoNaTela = document.querySelector('#timer');
 
-let tempoDecorrido = 1500;
+let tempoDecorrido = 10;
 
 inputMusica.addEventListener('change', () => {
     if (musica.paused){
@@ -82,6 +82,11 @@ const contagem = () => {
        clearInterval(intervaloId);
        iconPlay.src = './imagens/play_arrow.png';
        intervaloId = null;
+       const focoAtivo = html.getAttribute("data-contexto") == "foco";
+       if (focoAtivo) {
+            const evento = new CustomEvent("focoFinalizado");
+            document.dispatchEvent(evento);
+       }
        textoSpan.textContent = 'Começar';
        new Audio('./sons/beep.mp3').play();
        if (musica.play){
