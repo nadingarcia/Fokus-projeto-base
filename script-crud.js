@@ -122,19 +122,16 @@ document.addEventListener("focoFinalizado", ()=> {
     }
 })
 
-btLimparConcluidas.addEventListener("click", () => {
-    document.querySelectorAll(".app__section-task-list-item-complete").forEach (elemento => {
-        elemento.remove();
-    })
-    tarefas = tarefas.filter(tarefa => !tarefa.completa);
-    atualizarTarefas();
-})
-
-btLimparTodas.addEventListener("click", () => {
-    document.querySelectorAll(".app__section-task-list-item").forEach (elemento => {
+const removerTarefas = (completas) => {
+    const seletor = completas ? ".app__section-task-list-item-complete" : ".app__section-task-list-item";
+    document.querySelectorAll(seletor).forEach (elemento => {
         elemento.remove();
     })
 
-    tarefas = [];
+   tarefas = completas ? tarefas.filter(tarefa => !tarefa.completa) : [];
     atualizarTarefas();
-})
+}
+
+btLimparConcluidas.addEventListener("click", () => removerTarefas (true) );
+btLimparTodas.addEventListener("click", () => removerTarefas (false) );
+  
